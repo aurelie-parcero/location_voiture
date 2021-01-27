@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Vehicule List</title>
+<!--    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>-->
+</head>
+<body>
+<h1>Character List</h1>
+<!--<a th:href="@{/addCharacter}">Add a Character</a>-->
+<!--<a th:href="@{/delCharacter}">Delete a Character</a>-->
+<!--<h2 th:utext="${message}">..!..</h2>-->
+<br/><br/>
+<div>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Type</th>
+        </tr>
+        <tr th:each ="vehicle : ${vehicles}">
+            <td th:utext="${vehicle.licensePlate}">...</td>
+            <td th:utext="${vehicle.brand}">...</td>
+            <td th:utext="${vehicle.type}">...</td>
+            <td>
+<!--                <a th:href="@{/seeCharacter/{id}(id=${vehicle.id})}">See</a>-->
+<!--                <a th:href="@{/updCharacter/{id}(id=${vehicle.id})}">Update</a>-->
+<!--                <a th:href="@{/delCharacter/{id}(id=${vehicle.id})}">Delete</a>-->
+
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
