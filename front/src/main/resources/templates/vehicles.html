@@ -6,7 +6,7 @@
 <body>
 <nav th:replace="fragments::html_nav"></nav>
 <section class="container  m-3 text-primary">
-    <h1 class="text-center">Liste des véhicules</h1>
+    <h1 class="text-center"><span><i class="fas fa-car-side"></i></span> Liste des véhicules</h1>
 </section>
 
 <section class="container">
@@ -27,7 +27,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr class="table-dark" th:each="data : ${vehicles}">
+        <tr th:each="data : ${vehicles}">
             <td th:utext="${data.isBooked}">...</td>
             <td th:utext="${data.licensePlate}">...</td>
             <td th:utext="${data.brand}">...</td>

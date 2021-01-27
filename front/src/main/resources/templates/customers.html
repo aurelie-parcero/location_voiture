@@ -6,7 +6,7 @@
 <body>
 <nav th:replace="fragments::html_nav"></nav>
 <section class="container  m-3 text-primary">
-    <h1 class="text-center">Liste des clients</h1>
+    <h1 class="text-center"><span><i class="fas fa-users"></i></span>Liste des clients</h1>
 </section>
 
 <section class="container">
@@ -27,7 +27,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr class="table-dark" th:each="data : ${customers}">
+        <tr  th:each="data : ${customers}">
             <td th:utext="${data.currentrental}">...</td>
             <td th:utext="${data.drivinglicensenumber}">...</td>
             <td th:utext="${data.firstname}">...</td>
