@@ -2,57 +2,53 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments::html_head">
 </head>
+
 <body>
 <nav th:replace="fragments::html_nav"></nav>
-<h1>Liste des véhicules</h1>
-<br/><br/>
+<section class="container  m-3 text-primary">
+    <h1 class="text-center">Liste des véhicules</h1>
+</section>
 
 <section class="container">
     <table class="table table-hover">
         <thead>
         <tr>
+            <th scope="col">Disponible</th>
             <th scope="col">N° de plaques</th>
             <th scope="col">Marques</th>
-            <th scope="col">Column heading</th>
-            <th scope="col">Column heading</th>
+            <th scope="col">Model</th>
+            <th scope="col">Couleur</th>
+            <th scope="col">Cylindré</th>
+            <th scope="col">Kilomètres</th>
+            <th scope="col">Prix</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
         </tr>
         </thead>
         <tbody>
-        <tr class="table-active">
-            <th scope="row">Active</th>
-            <td>Column content</td>
-            <td>Column content</td>
-            <td>Column content</td>
-        </tr>
-        <tr class="table-dark">
-            <th scope="row">Dark</th>
-            <td>Column content</td>
-            <td>Column content</td>
-            <td>Column content</td>
+        <tr class="table-dark" th:each="data : ${vehicles}">
+            <td th:utext="${data.isBooked}">...</td>
+            <td th:utext="${data.licensePlate}">...</td>
+            <td th:utext="${data.brand}">...</td>
+            <td th:utext="${data.type}">...</td>
+            <td th:utext="${data.color}">...</td>
+            <td th:utext="${data.cylinder}">...</td>
+            <td th:utext="${data.kilometerRate}">...</td>
+            <td th:utext="${data.price}">...</td>
+            <td>
+                <a class="btn btn-success btn-sm" th:href="@{/vehicle/{licensePlate}(licensePlate=${data.licensePlate})}"><i class="fas fa-eye"></i></a>
+            </td>
+            <td>
+                <a class="btn btn-warning btn-sm" th:href="@{/updvehicle/{licensePlate}(licensePlate=${data.licensePlate})}"><i class="fas fa-edit"></i></a>
+            </td>
+            <td>
+                <a class="btn btn-danger btn-sm" th:href="@{/delvehicle/{licensePlate}(licensePlate=${data.licensePlate})}"><i class="fas fa-trash-alt"></i></a>
+            </td>
         </tr>
         </tbody>
     </table>
 </section>
-<div>
-    <table border="1">
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Type</th>
-        </tr>
-        <tr th:each ="vehicle : ${vehicles}">
-            <td th:utext="${vehicle.licensePlate}">...</td>
-            <td th:utext="${vehicle.brand}">...</td>
-            <td th:utext="${vehicle.type}">...</td>
-            <td>
-<!--                <a th:href="@{/seeCharacter/{id}(id=${vehicle.id})}">See</a>-->
-<!--                <a th:href="@{/updCharacter/{id}(id=${vehicle.id})}">Update</a>-->
-<!--                <a th:href="@{/delCharacter/{id}(id=${vehicle.id})}">Delete</a>-->
-
-            </td>
-        </tr>
-    </table>
-</div>
 <footer th:replace="fragments::html_footer">
 </footer>
 

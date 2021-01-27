@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments::html_head">
+</head>
+
+<body>
+<nav th:replace="fragments::html_nav"></nav>
+<section class="container  m-3 text-primary">
+    <h1 class="text-center">Liste des clients</h1>
+</section>
+
+<section class="container">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">Location en cours</th>
+            <th scope="col">N° de permis</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Prénom</th>
+            <th scope="col">Email</th>
+            <th scope="col">Téléphone</th>
+            <th scope="col">Date de naissance</th>
+
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="table-dark" th:each="data : ${customers}">
+            <td th:utext="${data.currentrental}">...</td>
+            <td th:utext="${data.drivinglicensenumber}">...</td>
+            <td th:utext="${data.firstname}">...</td>
+            <td th:utext="${data.lastname}">...</td>
+            <td th:utext="${data.email}">...</td>
+            <td th:utext="${data.phonenumber}">...</td>
+            <td th:utext="${data.dateofbirth}">...</td>
+
+            <td>
+                <a class="btn btn-success btn-sm" th:href="@{/customer/{drivinglicensenumber}(drivinglicensenumber=${data.drivinglicensenumber})}"><i class="fas fa-eye"></i></a>
+            </td>
+            <td>
+                <a class="btn btn-warning btn-sm" th:href="@{/updCustomer/{drivinglicensenumber}(drivinglicensenumber=${data.drivinglicensenumber})}"><i class="fas fa-edit"></i></a>
+            </td>
+            <td>
+                <a class="btn btn-danger btn-sm" th:href="@{/delCustomer/{drivinglicensenumber}(drivinglicensenumber=${data.drivinglicensenumber})}"><i class="fas fa-trash-alt"></i></a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</section>
+<footer th:replace="fragments::html_footer">
+</footer>
+
+</body>
+</html>

@@ -13,7 +13,7 @@
 <body>
 
 <nav th:fragment="html_nav" class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" th:href="@{/index.html}"> <img src="../static/logo.png"/></a>
+    <a class="navbar-brand" th:href="@{/index.html}"> <img src="../static/logo.png" th:src="@{logo.png}"/></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -21,7 +21,10 @@
     <div class="collapse navbar-collapse" id="navbarColor02">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" th:href="@{/vehicles.html}">Liste des Véhicules</a>
+                <a class="nav-link" th:href="@{/vehicles}">Liste des Véhicules</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/customers}">Liste des Clients</a>
             </li>
         </ul>
     </div>

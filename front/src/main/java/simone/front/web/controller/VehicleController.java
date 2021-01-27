@@ -6,8 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
-import simone.front.model.Customer;
-import simone.front.model.Vehicle;
+import simone.front.model.*;
 
 
 import java.util.List;

@@ -28,13 +28,6 @@ public class Vehicle {
         this.licensePlate = licensePlate;
     }
 
-    public VehicleType getType() {
-        return type;
-    }
-
-    public void setType(VehicleType type) {
-        this.type = type;
-    }
 
     public String getBrand() {
         return brand;
@@ -116,4 +109,11 @@ public class Vehicle {
                 '}';
     }
 
+    public VehicleType getType() {
+        return type;
+    }
+
+    public void setType(VehicleType type) {
+        this.type = type;
+    }
 }
