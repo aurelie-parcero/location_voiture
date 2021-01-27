@@ -1,16 +1,38 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8" />
-    <title>Vehicule List</title>
-<!--    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>-->
+<head th:replace="fragments::html_head">
 </head>
 <body>
-<h1>Character List</h1>
-<!--<a th:href="@{/addCharacter}">Add a Character</a>-->
-<!--<a th:href="@{/delCharacter}">Delete a Character</a>-->
-<!--<h2 th:utext="${message}">..!..</h2>-->
+<nav th:replace="fragments::html_nav"></nav>
+<h1>Liste des véhicules</h1>
 <br/><br/>
+
+<section class="container">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">N° de plaques</th>
+            <th scope="col">Marques</th>
+            <th scope="col">Column heading</th>
+            <th scope="col">Column heading</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="table-active">
+            <th scope="row">Active</th>
+            <td>Column content</td>
+            <td>Column content</td>
+            <td>Column content</td>
+        </tr>
+        <tr class="table-dark">
+            <th scope="row">Dark</th>
+            <td>Column content</td>
+            <td>Column content</td>
+            <td>Column content</td>
+        </tr>
+        </tbody>
+    </table>
+</section>
 <div>
     <table border="1">
         <tr>
@@ -31,5 +53,8 @@
         </tr>
     </table>
 </div>
+<footer th:replace="fragments::html_footer">
+</footer>
+
 </body>
 </html>
