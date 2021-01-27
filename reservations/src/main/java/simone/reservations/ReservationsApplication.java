@@ -1,4 +1,4 @@
-package simone.vehicles;
+package simone.reservations;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,10 +8,10 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @SpringBootApplication
 @EnableSwagger2
 @EnableDiscoveryClient
-public class VehiclesApplication {
+public class ReservationsApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(VehiclesApplication.class, args);
+		SpringApplication.run(ReservationsApplication.class, args);
 	}
 
 }

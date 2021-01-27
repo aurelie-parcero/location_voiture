@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>simone</groupId>
-	<artifactId>vehicles</artifactId>
+	<artifactId>reservations</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>vehicles</name>
-	<description>Micro service managing vehicles</description>
+	<name>reservations</name>
+	<description>Micro service managing reservations</description>
 	<properties>
 		<java.version>11</java.version>
 		<spring-cloud.version>2020.0.0</spring-cloud.version>
@@ -41,7 +41,6 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
