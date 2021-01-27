@@ -1,17 +1,17 @@
-package simone.vehicles;
+package simone.zuulserver;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
+import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 
 @SpringBootApplication
-@EnableSwagger2
+@EnableZuulProxy
 @EnableDiscoveryClient
-public class VehiclesApplication {
+public class ZuulServerApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(VehiclesApplication.class, args);
+		SpringApplication.run(ZuulServerApplication.class, args);
 	}
 
 }
