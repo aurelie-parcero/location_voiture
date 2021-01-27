@@ -21,7 +21,7 @@ public class VehicleController {
 
     @GetMapping(value = "/vehicles")
     public List<Vehicle> getVehicles(Model model) {
-        String url = "http://127.0.0.1:8081/api/vehicles";
+        String url = "http://127.0.0.1:9004/vehicles/api/vehicles";
         List<Vehicle> vehicleList = restTemplate.getForObject(url, List.class);
         model.addAttribute("vehicles", vehicleList);
         return vehicleList;

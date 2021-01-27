@@ -20,7 +20,7 @@ public class CustomerController {
 
     @GetMapping(value = {"/api/customers"})
     public List<Customer> listCustomer(Model model) {
-        String url = "http://127.0.0.1:8083/api/customers";
+        String url = "http://127.0.0.1:9004/customers/api/customers";
         List<Customer> customersList = restTemplate.getForObject(url, List.class);
         model.addAttribute("customers", customersList);
         return customersList;
