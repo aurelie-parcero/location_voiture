@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments::html_head">
+</head>
+<body>
+<nav th:replace="fragments::html_nav"></nav>
+<h1>Liste des véhicules</h1>
+<br/><br/>
+
+<section class="container">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">N° de plaques</th>
+            <th scope="col">Marques</th>
+            <th scope="col">Column heading</th>
+            <th scope="col">Column heading</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="table-active">
+            <th scope="row">Active</th>
+            <td>Column content</td>
+            <td>Column content</td>
+            <td>Column content</td>
+        </tr>
+        <tr class="table-dark">
+            <th scope="row">Dark</th>
+            <td>Column content</td>
+            <td>Column content</td>
+            <td>Column content</td>
+        </tr>
+        </tbody>
+    </table>
+</section>
+<div>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Type</th>
+        </tr>
+        <tr th:each ="vehicle : ${vehicles}">
+            <td th:utext="${vehicle.licensePlate}">...</td>
+            <td th:utext="${vehicle.brand}">...</td>
+            <td th:utext="${vehicle.type}">...</td>
+            <td>
+<!--                <a th:href="@{/seeCharacter/{id}(id=${vehicle.id})}">See</a>-->
+<!--                <a th:href="@{/updCharacter/{id}(id=${vehicle.id})}">Update</a>-->
+<!--                <a th:href="@{/delCharacter/{id}(id=${vehicle.id})}">Delete</a>-->
+
+            </td>
+        </tr>
+    </table>
+</div>
+<footer th:replace="fragments::html_footer">
+</footer>
+
+</body>
+</html>

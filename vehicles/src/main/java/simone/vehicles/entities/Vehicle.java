@@ -1,9 +1,12 @@
 package simone.vehicles.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.hibernate.annotations.CreationTimestamp;
 import simone.vehicles.enums.VehicleType;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.Set;
 
 @Entity
@@ -20,8 +23,14 @@ public class Vehicle {
     private float price;
     private float kilometerRate;
     private int RACHP;
+
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @ElementCollection
-    private Set<LocalDate> isBooked;
+    @Column(columnDefinition="DATE")
+    @MapKeyColumn(columnDefinition="DATE")
+    private Set<Date> isBooked;
+//    @Temporal(TemporalType.TIMESTAMP)
+
 
 
     public String getLicensePlate() {
@@ -96,11 +105,11 @@ public class Vehicle {
         this.RACHP = RACHP;
     }
 
-    public Set<LocalDate> getIsBooked() {
+    public Set<Date> getIsBooked() {
         return isBooked;
     }
 
-    public void setIsBooked(Set<LocalDate> isBooked) {
+    public void setIsBooked(Set<Date> isBooked) {
         this.isBooked = isBooked;
     }
 
