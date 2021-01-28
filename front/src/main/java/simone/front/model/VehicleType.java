@@ -5,7 +5,15 @@ public enum VehicleType {
     TWO_WHEELED("deux roues"),
     COMMERCIAL_VEHICLE("Utilitaire");
 
-    VehicleType(String vehicleType) {
 
+
+    private final String displayValue;
+
+    private VehicleType(String displayValue) {
+        this.displayValue = displayValue;
+    }
+
+    public String getDisplayValue() {
+        return displayValue;
     }
 }

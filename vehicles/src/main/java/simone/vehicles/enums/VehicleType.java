@@ -8,4 +8,5 @@ public enum VehicleType {
     VehicleType(String vehicleType) {
 
     }
+
 }

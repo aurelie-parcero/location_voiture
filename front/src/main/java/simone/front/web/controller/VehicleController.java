@@ -13,6 +13,7 @@ import org.thymeleaf.spring5.ISpringTemplateEngine;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.ITemplateResolver;
+import simone.front.form.BookingForm;
 import simone.front.form.IsBookedForm;
 import simone.front.model.*;
 
@@ -35,44 +36,57 @@ public class VehicleController {
     private RestTemplate restTemplate;
 
 
-//    @GetMapping(value = "/vehicles")
-//    public List<Vehicle> getVehicles(Model model) {
-//        String url = "http://127.0.0.1:9004/vehicles/api/vehicles";
-//        List<Vehicle> vehicleList = restTemplate.getForObject(url, List.class);
-//        model.addAttribute("vehicles", vehicleList);
-//        return vehicleList;
-//    }
+    @GetMapping(value = "/vehicles")
+    public List<Vehicle> getVehicles(Model model) {
+        String url = "http://127.0.0.1:9004/vehicles/api/vehicles";
+        List<Vehicle> vehicleList = restTemplate.getForObject(url, List.class);
+        model.addAttribute("vehicles", vehicleList);
+        return vehicleList;
+    }
 
 
     @GetMapping(value = "/")
-    public String showVehicles(Model model) {
+    public String showVehicleForm(Model model) {
         IsBookedForm isBookedForm = new IsBookedForm();
         model.addAttribute("isBookedForm", isBookedForm);
-        model.addAttribute("standardDate", new Date());
         return "index";
     }
+
 
     @PostMapping(value = "/isBooked")
     public String showVehiclesNotBooked(Model model, @ModelAttribute IsBookedForm isBookedForm) throws ParseException {
         model.addAttribute("isBookedFormExist", isBookedForm);
         Date beginDate = isBookedForm.getBeginDate();
         Date endDate = isBookedForm.getEndDate();
-
+        VehicleType type = isBookedForm.getType();
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         String parsedStartDate = format.format(beginDate);
         String parsedEndDate = format.format(endDate);
-
-
-        String urltoclean = "http://127.0.0.1:9004/vehicles/api/vehicles/available?start=" + parsedStartDate + "&end=" + parsedEndDate;
-
-        restTemplate.postForObject(urltoclean, isBookedForm, Vehicle.class);
-
+        String urltoclean = "http://127.0.0.1:9004/vehicles/api/vehicles/available?start=" + parsedStartDate + "&end=" + parsedEndDate + "&type=" + type;
+        List<Vehicle> vehicles = restTemplate.postForObject(urltoclean, isBookedForm, List.class);
+        model.addAttribute("vehicles", vehicles);
         if (isBookedForm == null) {
             model.addAttribute("isBookedForm", new IsBookedForm());
         }
         System.out.println(isBookedForm);
         return "index";
     }
+
+    @GetMapping(value = "/bookingForm")
+    public String showBookingForm(Model model) {
+//        BookingForm bookingForm = new BookingForm();
+//        model.addAttribute("bookingForm", bookingForm);
+        model.addAttribute("licensePlate", "teeeesssst");
+        return "index";
+    }
+//    @GetMapping(value = "/bookingForm/{licensePlate}")
+//    public String bookingForm(Model model,@ModelAttribute BookingForm bookingForm) {
+//        if (bookingForm == null) {
+//            model.addAttribute("bookingForm", new BookingForm());
+//        }
+//        return "index";
+//    }
+
 
 //    @PostMapping(value = "/isBooked")
 //    public IsBookedForm showVehiclesNotBooked(Model model,@ModelAttribute IsBookedForm isBookedForm) {

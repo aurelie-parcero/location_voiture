@@ -1,6 +1,7 @@
 package simone.front.form;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import simone.front.model.VehicleType;
 
 import java.time.LocalDate;
 import java.util.Date;
@@ -12,6 +13,8 @@ public class IsBookedForm {
     private Date endDate;
     @DateTimeFormat(pattern = "yyyy-mm-dd")
     private Date birthDate;
+
+    private VehicleType type;
 
     public Date getBeginDate() {
         return beginDate;
@@ -35,5 +38,13 @@ public class IsBookedForm {
 
     public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
+    }
+
+    public VehicleType getType() {
+        return type;
+    }
+
+    public void setType(VehicleType type) {
+        this.type = type;
     }
 }

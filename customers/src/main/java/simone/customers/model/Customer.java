@@ -4,6 +4,8 @@ package simone.customers.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+import java.util.Date;
+import java.util.Set;
 
 @Entity
 
@@ -17,7 +19,7 @@ public class Customer {
     private String lastname;
     private String phonenumber;
 
-    private LocalDateTime dateofbirth;
+    private Set<Date> dateofbirth;
 
     @Column(columnDefinition = "boolean default false")
     private Boolean currentrental;
@@ -39,7 +41,7 @@ public class Customer {
         this.email = email;
     }
 
-    public Customer(Long drivinglicensenumber, String email, String firstName, String lastname, String phonenumber, LocalDateTime dateofbirth, boolean currentrental) {
+    public Customer(Long drivinglicensenumber, String email, String firstName, String lastname, String phonenumber, Set<Date>  dateofbirth, boolean currentrental) {
         this.drivinglicensenumber= drivinglicensenumber;
         this.email = email;
         this.firstname = firstName;
@@ -92,11 +94,11 @@ public class Customer {
         this.drivinglicensenumber = drivingLicenseNumber;
     }
 
-    public LocalDateTime getDateofbirth() {
+    public Set<Date>  getDateofbirth() {
         return dateofbirth;
     }
 
-    public void setDateofbirth(LocalDateTime dateOfbirth) {
+    public void setDateofbirth(Set<Date>  dateOfbirth) {
         this.dateofbirth = dateOfbirth;
     }
 
