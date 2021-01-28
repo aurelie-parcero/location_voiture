@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mer. 27 jan. 2021 à 09:22
+-- Généré le : jeu. 28 jan. 2021 à 15:04
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.3.21
 
@@ -29,25 +29,24 @@ SET time_zone = "+00:00";
 
 DROP TABLE IF EXISTS `vehicles`;
 CREATE TABLE IF NOT EXISTS `vehicles` (
-  `license_plate` varchar(255) CHARACTER SET latin1 NOT NULL,
+  `license_plate` varchar(255) NOT NULL,
   `rachp` int(11) NOT NULL,
-  `brand` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
-  `color` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
-  `cylinder` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
+  `brand` varchar(255) DEFAULT NULL,
+  `color` varchar(255) DEFAULT NULL,
+  `cylinder` varchar(255) DEFAULT NULL,
   `kilometer_rate` float NOT NULL,
-  `model` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
+  `model` varchar(255) DEFAULT NULL,
   `price` float NOT NULL,
   `type` int(11) DEFAULT NULL,
   PRIMARY KEY (`license_plate`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `vehicles`
 --
 
 INSERT INTO `vehicles` (`license_plate`, `rachp`, `brand`, `color`, `cylinder`, `kilometer_rate`, `model`, `price`, `type`) VALUES
-('BD680BJ', 5, 'Peugeot', 'red', NULL, 1.5, '408', 10, 0),
-('GH220GG', 5, 'Renault', 'silver', NULL, 1.5, 'Partner', 10, 2);
+('GH220GIU', 5, 'Audi', 'red', NULL, 1.5, 'Q3', 20, 0);
 
 -- --------------------------------------------------------
 
@@ -57,10 +56,22 @@ INSERT INTO `vehicles` (`license_plate`, `rachp`, `brand`, `color`, `cylinder`, 
 
 DROP TABLE IF EXISTS `vehicle_is_booked`;
 CREATE TABLE IF NOT EXISTS `vehicle_is_booked` (
-  `vehicle_license_plate` varchar(255) CHARACTER SET latin1 NOT NULL,
+  `vehicle_license_plate` varchar(255) NOT NULL,
   `is_booked` date DEFAULT NULL,
   KEY `FKa838yna6wq7iw1sgfxonl8a49` (`vehicle_license_plate`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `vehicle_is_booked`
+--
+
+INSERT INTO `vehicle_is_booked` (`vehicle_license_plate`, `is_booked`) VALUES
+('GH220GIU', '2021-02-24'),
+('GH220GIU', '2021-02-21'),
+('GH220GIU', '2021-05-20'),
+('GH220GIU', '2021-02-25'),
+('GH220GIU', '2021-02-22'),
+('GH220GIU', '2021-09-23');
 
 --
 -- Contraintes pour les tables déchargées
