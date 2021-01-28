@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments::html_head">
+</head>
+<body>
+<nav th:replace="fragments::html_nav"></nav>
+<section class="container  m-3 text-primary">
+    <h1 class="text-center">Liste des véhicules</h1>
+</section>
+
+<section class="container">
+
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">Disponible</th>
+            <th scope="col">N° de plaques</th>
+            <th scope="col">Marques</th>
+            <th scope="col">Model</th>
+            <th scope="col">Couleur</th>
+            <th scope="col">Cylindré</th>
+            <th scope="col">Kilomètres</th>
+            <th scope="col">Prix</th>
+        </tr>
+        </thead>
+        <tr class="table-dark" th:each ="vehicle : ${vehicles}">
+            <td th:utext="${vehicle.isBooked}">...</td>
+            <td th:utext="${vehicle.licensePlate}">...</td>
+            <td th:utext="${vehicle.brand}">...</td>
+            <td th:utext="${vehicle.type}">...</td>
+            <td th:utext="${vehicle.color}">...</td>
+            <td th:utext="${vehicle.cylinder}">...</td>
+            <td th:utext="${vehicle.kilometerRate}">...</td>
+            <td th:utext="${vehicle.price}">...</td>
+            <td>
+
+                <a class="btn btn-success btn-sm" th:href="@{/seeCharacter/{licensePlate}(licensePlate=${vehicle.licensePlate})}">Fiche Téchnique</a>
+                <a class="btn btn-warning btn-sm" th:href="@{/updCharacter/{licensePlate}(licensePlate=${vehicle.licensePlate})}">Mêttre à jour</a>
+                <a class="btn btn-danger btn-sm" th:href="@{/delCharacter/{licensePlate}(licensePlate=${vehicle.licensePlate})}">Supprimer</a>
+            </td>
+        </tr>
+    </table>
+</section>
+<footer th:replace="fragments::html_footer">
+</footer>
+
+</body>
+</html>

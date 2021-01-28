@@ -1,6 +1,6 @@
 package simone.vehicles.entities;
 
-import simone.vehicles.enums.VehicleType;
+import simone.vehicles.enums.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
