@@ -14,7 +14,9 @@ import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Period;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -28,11 +30,13 @@ public class VehicleController {
     @ApiOperation(value = "Vehicles available", notes = "Get all the vehicles created")
     @RequestMapping(value = "/api/vehicles/available")
     public @ResponseBody
-    List<Vehicle> getVehiclesAvailable(@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date start, @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date end) {
+    List<Vehicle> getVehiclesAvailable(@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date start, @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date end, @RequestParam String type) {
 
-        List<Vehicle> allVehicles = vehicleRepository.findAll();
+        List<Vehicle> allVehicles = vehicleRepository.findAllByType(VehicleType.valueOf(type.toUpperCase()));
+
         List<Vehicle> result = new ArrayList<>();
         List<Vehicle> unavailable = new ArrayList<>();
+
         for (Vehicle vehicle : allVehicles) {
             if (!vehicle.getIsBooked().isEmpty()) {
                 for (Date date : vehicle.getIsBooked()
