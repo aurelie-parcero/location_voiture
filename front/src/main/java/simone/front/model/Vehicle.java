@@ -1,11 +1,13 @@
 package simone.front.model;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.Set;
 
 public class Vehicle {
-
 
     private String licensePlate;
     private VehicleType type;
@@ -17,7 +19,10 @@ public class Vehicle {
     private float kilometerRate;
     private int RACHP;
 
-    private Set<LocalDate> isBooked;
+
+    private Set<Date> isBooked;
+
+
 
 
     public String getLicensePlate() {
@@ -28,6 +33,13 @@ public class Vehicle {
         this.licensePlate = licensePlate;
     }
 
+    public VehicleType getType() {
+        return type;
+    }
+
+    public void setType(VehicleType type) {
+        this.type = type;
+    }
 
     public String getBrand() {
         return brand;
@@ -85,11 +97,11 @@ public class Vehicle {
         this.RACHP = RACHP;
     }
 
-    public Set<LocalDate> getIsBooked() {
+    public Set<Date> getIsBooked() {
         return isBooked;
     }
 
-    public void setIsBooked(Set<LocalDate> isBooked) {
+    public void setIsBooked(Set<Date> isBooked) {
         this.isBooked = isBooked;
     }
 
@@ -107,13 +119,5 @@ public class Vehicle {
                 ", RACHP=" + RACHP +
                 ", isBooked=" + isBooked +
                 '}';
-    }
-
-    public VehicleType getType() {
-        return type;
-    }
-
-    public void setType(VehicleType type) {
-        this.type = type;
     }
 }
