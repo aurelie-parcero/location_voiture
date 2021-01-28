@@ -29,6 +29,10 @@
         <tbody>
         <tr th:each="data : ${vehicles}">
             <td th:utext="${data.isBooked}">...</td>
+
+<!--            <td>-->
+<!--                <th:block th:if="${data.isBooked eq 'null'}">X</th:block>-->
+<!--            </td>-->
             <td th:utext="${data.licensePlate}">...</td>
             <td th:utext="${data.brand}">...</td>
             <td th:utext="${data.type}">...</td>
