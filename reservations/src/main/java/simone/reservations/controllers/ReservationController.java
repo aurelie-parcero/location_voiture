@@ -16,32 +16,32 @@ public class ReservationController {
     private ReservationRepository reservationRepository;
 
     @ApiOperation(value = "Reservations list", notes = "Get all the reservations created", nickname = "reservationsIndex")
-    @GetMapping(value = "/reservations")
+    @GetMapping(value = "/api/reservations")
     public List<Reservation> getReservations() {
         return reservationRepository.findAll();
     }
 
     @ApiOperation(value = "Get a reservation by booking number")
-    @GetMapping("/reservations/{bookingNumber}")
+    @GetMapping("/api/reservations/{bookingNumber}")
     public Reservation getReservation(@PathVariable int bookingNumber) {
         return reservationRepository.findByBookingNumber(bookingNumber).orElse(null);
     }
 
     @ApiOperation(value = "Register a reservation")
-    @PostMapping("/reservations")
+    @PostMapping("/api/reservations")
     public Reservation addReservation(@RequestBody Reservation reservation) {
         return reservationRepository.save(reservation);
     }
 
     @ApiOperation(value = "Update reservation data")
-    @PutMapping(value = "/reservations/{bookingNumber}")
+    @PutMapping(value = "/api/reservations/{bookingNumber}")
     public Reservation updateReservation(@PathVariable int bookingNumber, @RequestBody Reservation reservation) {
         assert reservation != null;
         return reservationRepository.save(reservation);
     }
 
     @ApiOperation(value = "Delete a reservation with its booking number")
-    @DeleteMapping("/reservations/{bookingNumber}")
+    @DeleteMapping("/api/reservations/{bookingNumber}")
     public void deleteReservation(Reservation reservation) {
         reservationRepository.delete(reservation);
     }
