@@ -24,11 +24,11 @@ public class Vehicle {
     private float kilometerRate;
     private int RACHP;
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    @ElementCollection
-    @Column(columnDefinition="DATE")
-    @MapKeyColumn(columnDefinition="DATE")
-    private Set<Date> isBooked;
+//    @JsonFormat(pattern = "yyyy-MM-dd")
+//    @ElementCollection
+//    @Column(columnDefinition="DATE")
+//    @MapKeyColumn(columnDefinition="DATE")
+//    private Set<Date> isBooked;
 //    @Temporal(TemporalType.TIMESTAMP)
 
 
@@ -105,13 +105,13 @@ public class Vehicle {
         this.RACHP = RACHP;
     }
 
-    public Set<Date> getIsBooked() {
-        return isBooked;
-    }
-
-    public void setIsBooked(Set<Date> isBooked) {
-        this.isBooked = isBooked;
-    }
+//    public Set<Date> getIsBooked() {
+//        return isBooked;
+//    }
+//
+//    public void setIsBooked(Set<Date> isBooked) {
+//        this.isBooked = isBooked;
+//    }
 
     @Override
     public String toString() {
@@ -125,7 +125,6 @@ public class Vehicle {
                 ", price=" + price +
                 ", kilometerRate=" + kilometerRate +
                 ", RACHP=" + RACHP +
-                ", isBooked=" + isBooked +
                 '}';
     }
 

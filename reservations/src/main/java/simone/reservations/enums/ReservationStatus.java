@@ -1,11 +1,11 @@
 package simone.reservations.enums;
 
-public enum ReservationType {
+public enum ReservationStatus {
     WAITING_CONFIRM("attente validation"),
     ON_GOING("en cours"),
     CLOSED("cloturé");
 
-    ReservationType(String reservationType) {
+    ReservationStatus(String reservationStatus) {
 
     }
 }

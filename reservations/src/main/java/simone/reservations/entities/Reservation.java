@@ -1,21 +1,27 @@
 package simone.reservations.entities;
 
-import simone.reservations.enums.ReservationType;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import simone.reservations.enums.ReservationStatus;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @Table(name = "reservations")
 public class Reservation {
 
     @Id
+    @GeneratedValue
     private int bookingNumber;
     private String id_vehicle;
     private Long id_customer;
-    private ReservationType type;
-    private LocalDate pickUpDate;
-    private LocalDate returnDate;
+    private ReservationStatus status;
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    @Column(columnDefinition="DATE")
+    private Date pickUpDate;
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    @Column(columnDefinition="DATE")
+    private Date returnDate;
     private int estimationMileage;
     private int mileage;
     private float quote;
@@ -45,27 +51,27 @@ public class Reservation {
         this.id_customer = id_customer;
     }
 
-    public ReservationType getType() {
-        return type;
+    public ReservationStatus getStatus() {
+        return status;
     }
 
-    public void setType(ReservationType type) {
-        this.type = type;
+    public void setStatus(ReservationStatus status) {
+        this.status = status;
     }
 
-    public LocalDate getPickUpDate() {
+    public Date getPickUpDate() {
         return pickUpDate;
     }
 
-    public void setPickUpDate(LocalDate pickUpDate) {
+    public void setPickUpDate(Date pickUpDate) {
         this.pickUpDate = pickUpDate;
     }
 
-    public LocalDate getReturnDate() {
+    public Date getReturnDate() {
         return returnDate;
     }
 
-    public void setReturnDate(LocalDate returnDate) {
+    public void setReturnDate(Date returnDate) {
         this.returnDate = returnDate;
     }
 
@@ -107,7 +113,7 @@ public class Reservation {
                 "bookingNumber=" + bookingNumber +
                 ", id_vehicle=" + id_vehicle +
                 ", id_customer=" + id_customer +
-                ", type=" + type +
+                ", status=" + status +
                 ", pickUpDate='" + pickUpDate + '\'' +
                 ", returnDate='" + returnDate + '\'' +
                 ", estimationMileage=" + estimationMileage +

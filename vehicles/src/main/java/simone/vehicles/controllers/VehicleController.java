@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 import simone.vehicles.entities.Vehicle;
 import simone.vehicles.enums.VehicleType;
 import simone.vehicles.jpa.repositories.VehicleRepository;
@@ -28,31 +29,13 @@ public class VehicleController {
 
 
     @ApiOperation(value = "Vehicles available", notes = "Get all the vehicles created")
-    @RequestMapping(value = "/api/vehicles/available")
+    @RequestMapping(value = "/api/vehicles")
     public @ResponseBody
-    List<Vehicle> getVehiclesAvailable(@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date start, @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date end, @RequestParam String type) {
+    List<Vehicle> getVehiclesAvailable(@RequestParam String type) {
 
-        List<Vehicle> allVehicles = vehicleRepository.findAllByType(VehicleType.valueOf(type.toUpperCase()));
+        return vehicleRepository.findAllByType(VehicleType.valueOf(type.toUpperCase()));
+//        String url = "http://127.0.07:9004/reservations/api/reservations/booked?start=" + start + "&end=" + end;
 
-        List<Vehicle> result = new ArrayList<>();
-        List<Vehicle> unavailable = new ArrayList<>();
-
-        for (Vehicle vehicle : allVehicles) {
-            if (!vehicle.getIsBooked().isEmpty()) {
-                for (Date date : vehicle.getIsBooked()
-                ) {
-                    if ((date.after(start) || date.equals(start)) && (date.before(end) || date.equals(end))) {
-                        unavailable.add(vehicle);
-                    }
-                }
-            }
-        }
-        for (Vehicle vehicle : allVehicles) {
-            if(!unavailable.contains(vehicle)) {
-                result.add(vehicle);
-            }
-        }
-        return result;
     }
 
 
