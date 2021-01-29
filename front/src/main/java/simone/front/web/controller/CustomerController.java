@@ -35,6 +35,7 @@ public class CustomerController {
         String url = "http://127.0.0.1:9004/customers/api/customers";
         bookingForm.setCurrentrental(false);
         Customer newcustomer = restTemplate.postForObject(url,bookingForm,Customer.class);
+        model.addAttribute("bookingForm", false);
         model.addAttribute("newcustomer", newcustomer);
         return "booking";
     }
