@@ -64,7 +64,7 @@
                       <input th:field="${bookingForm.lastname}" type="text" id="lastname"/>
                   </div>
                   <div class=" form-group d-flex flex-column  mb-3" style="max-width: 20rem;">
-                      <label for="email">Votre Prénom : </label>
+                      <label for="email">Votre Email : </label>
                       <input th:field="${bookingForm.email}" type="text" id="email"/>
                   </div>
 
@@ -94,19 +94,19 @@
 <section th:if="${newcustomer}" class=" container">
     <div class="container jumbotron">
         <div class="container text-primary">
-            <h2 class="text-center"><span><i class="fas fa-car-side"></i></span> Véhicule séléctionnée :</h2>
+            <h2 class="text-center"><span><i class="fas fa-car-side"></i></span> Vos infrormations client :</h2>
         </div>
 
         <table class="table table-hover">
             <thead>
             <tr>
 
-                <th scope="col">Votre nom est :</th>
+                <th scope="col">Votre nom :</th>
                 <th scope="col">Votre prénom est :</th>
-                <th scope="col">Couleur</th>
-                <th scope="col">Cylindré</th>
-                <th scope="col">Kilomètres</th>
-                <th scope="col">Prix</th>
+                <th scope="col">Votre numéro de téléphone :</th>
+                <th scope="col">Votre email :</th>
+                <th scope="col">Votre numéro de permis de conduire :</th>
+                <th scope="col">Votre date de naissance</th>
             </tr>
             </thead>
             <tbody>
