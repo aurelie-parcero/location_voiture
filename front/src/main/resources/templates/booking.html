@@ -45,6 +45,8 @@
   <h2 class="text-center text-primary m-3"><span><i class="fas fa-user"></i></span>Créer votre fiche de réservation : </h2>
 <!--  <p th:text="${licensePlate}"></p>-->
       <form th:action="@{/addBooking}" th:object="${bookingForm}" class="d-flex flex-column " method="POST">
+
+          <input style="display: none" th:value="${resa.bookingNumber}" type="text" id="bookingId" name="bookingId"/>
           <div class="d-flex flex-row justify-content-between">
               <div class=" d-flex flex-column  align-items-start justify-content-between">
                   <div class=" form-group d-flex flex-column  mb-3" style="max-width: 20rem;">
@@ -122,6 +124,62 @@
         </table>
     </div>
 </section>
+
+<section th:if="${booking}" class=" container">
+    <div class="container jumbotron">
+        <div class="container text-primary">
+            <h2 class="text-center"><span><i class="fas fa-car-side"></i></span> Vos informations de réservation :</h2>
+        </div>
+
+        <table class="table table-hover">
+            <thead>
+            <tr>
+
+                <th scope="col">Numéro de réservation :</th>
+                <th scope="col">Date de début :</th>
+                <th scope="col">Date de fin :</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td th:utext="${booking.bookingNumber}">...</td>
+                <td th:utext="${booking.pickUpDate}">...</td>
+                <td th:utext="${booking.returnDate}">...</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section th:if="${booking}" class=" container">
+    <div class="container jumbotron">
+        <div class="container text-primary">
+            <h2 class="text-center"><span><i class="fas fa-car-side"></i></span> Voiture réservée :</h2>
+        </div>
+
+        <table class="table table-hover">
+            <thead>
+            <tr>
+
+                <th scope="col">Marque :</th>
+                <th scope="col">Modèle :</th>
+                <th scope="col">Couleur :</th>
+                <th scope="col">Prix :</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td th:utext="${car.brand}">...</td>
+                <td th:utext="${car.model}">...</td>
+                <td th:utext="${car.color}">...</td>
+                <td th:utext="${car.price}">...</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+
 
 <footer th:replace="fragments::html_footer">
 </footer>

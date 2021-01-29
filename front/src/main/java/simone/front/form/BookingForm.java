@@ -13,6 +13,15 @@ public class BookingForm {
     private String firstname;
     private String lastname;
     private String phonenumber;
+    private int bookingId;
+
+    public int getBookingId() {
+        return bookingId;
+    }
+
+    public void setBookingId(int bookingId) {
+        this.bookingId = bookingId;
+    }
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateofbirth;

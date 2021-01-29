@@ -40,9 +40,11 @@ import java.util.List;
 public class VehicleController {
 
 
+    public Date startBooking;
+    public Date endBooking;
+
     @Autowired
     private RestTemplate restTemplate;
-
 
     @GetMapping(value = "/vehicles")
     public List<Vehicle> getVehicles(Model model) {
@@ -75,20 +77,22 @@ public class VehicleController {
         String urlReservations = "http://127.0.07:9004/reservations/api/reservations/booked?start=" + parsedStartDate + "&end=" + parsedEndDate;
         List<Reservation> bookings = restTemplate.postForObject(urlReservations, isBookedForm, List.class);
 
-        assert bookings != null;
-        for (Reservation resa : bookings
-        ) {
-            assert vehicles != null;
-            vehicles.removeIf(vehicle -> vehicle.getLicensePlate().equals(resa.getId_vehicle()));
-        }
-
-        System.out.println(vehicles);
+//        assert bookings != null;
+//        for (Reservation resa : bookings
+//        ) {
+//            assert vehicles != null;
+//            vehicles.removeIf(vehicle -> vehicle.getLicensePlate().equals(resa.getId_vehicle()));
+//        }
+//
+//        System.out.println(vehicles);
 
         model.addAttribute("vehicles", vehicles);
         if (isBookedForm == null) {
             model.addAttribute("isBookedForm", new IsBookedForm());
         }
         System.out.println(isBookedForm);
+        startBooking = beginDate;
+        endBooking = endDate;
         return "index";
     }
 
@@ -100,6 +104,14 @@ public class VehicleController {
         model.addAttribute("vehicle", vehicle);
         model.addAttribute("licensePlate", licensePlate);
         model.addAttribute("bookingForm", bookingForm);
+        Reservation resa = new Reservation();
+        resa.setId_vehicle(licensePlate);
+        resa.setStatus(ReservationStatus.WAITING_CONFIRM);
+        resa.setPickUpDate(startBooking);
+        resa.setReturnDate(endBooking);
+        String resaUrl = "http://127.0.0.1:9004/reservations/api/reservations";
+        Reservation postResa = restTemplate.postForObject(resaUrl, resa, Reservation.class);
+        model.addAttribute("resa", postResa);
         return "booking";
     }
 //    @GetMapping(value = "/booking/{licensePlate}")
