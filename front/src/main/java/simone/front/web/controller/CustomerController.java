@@ -1,5 +1,8 @@
 package simone.front.web.controller;
+
+import org.springframework.format.annotation.DateTimeFormat;
 import simone.front.model.*;
+import simone.front.form.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,6 +29,15 @@ public class CustomerController {
         return customersList;
     }
 
+
+    @PostMapping(value = {"/addBooking"})
+    public String ajouterClient(Model model, @ModelAttribute  BookingForm bookingForm) {
+        String url = "http://127.0.0.1:9004/customers/api/customers";
+        bookingForm.setCurrentrental(false);
+        Customer newcustomer = restTemplate.postForObject(url,bookingForm,Customer.class);
+        model.addAttribute("newcustomer", newcustomer);
+        return "booking";
+    }
 
 //
 //

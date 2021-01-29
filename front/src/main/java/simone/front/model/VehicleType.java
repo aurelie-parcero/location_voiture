@@ -6,14 +6,6 @@ public enum VehicleType {
     COMMERCIAL_VEHICLE("Utilitaire");
 
 
-
-    private final String displayValue;
-
-    private VehicleType(String displayValue) {
-        this.displayValue = displayValue;
-    }
-
-    public String getDisplayValue() {
-        return displayValue;
+    VehicleType(String vehicleType) {
     }
 }

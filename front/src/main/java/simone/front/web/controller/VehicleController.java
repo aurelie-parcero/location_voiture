@@ -1,29 +1,21 @@
 package simone.front.web.controller;
 
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
-import org.thymeleaf.extras.java8time.dialect.Java8TimeDialect;
-import org.thymeleaf.spring5.ISpringTemplateEngine;
-import org.thymeleaf.spring5.SpringTemplateEngine;
-import org.thymeleaf.spring5.view.ThymeleafViewResolver;
-import org.thymeleaf.templateresolver.ITemplateResolver;
-import simone.front.form.BookingForm;
-import simone.front.form.IsBookedForm;
+
+import simone.front.form.*;
 import simone.front.model.*;
 
 
-import java.security.Timestamp;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.util.Calendar;
+
 import java.util.Date;
 import java.util.List;
 
@@ -72,13 +64,26 @@ public class VehicleController {
         return "index";
     }
 
-    @GetMapping(value = "/bookingForm")
-    public String showBookingForm(Model model) {
-//        BookingForm bookingForm = new BookingForm();
-//        model.addAttribute("bookingForm", bookingForm);
-        model.addAttribute("licensePlate", "teeeesssst");
-        return "index";
+    @GetMapping(value = "/booking/{licensePlate}")
+    public String showBookingForm(Model model, @PathVariable(value = "licensePlate") String licensePlate){
+        String url = "http://127.0.0.1:9004/vehicles/api/vehicles/"+licensePlate;
+        Vehicle vehicle = restTemplate.getForObject(url, Vehicle.class);
+        BookingForm bookingForm = new BookingForm();
+        model.addAttribute("vehicle", vehicle);
+        model.addAttribute("licensePlate", licensePlate);
+        model.addAttribute("bookingForm", bookingForm);
+        return "booking";
     }
+//    @GetMapping(value = "/booking/{licensePlate}")
+//    public String showBookingForm(Model model, @PathVariable(value = "licensePlate") String licensePlate){
+//        String url = "http://127.0.0.1:9004/vehicles/api/vehicles/"+licensePlate;
+//        Vehicle vehicle = restTemplate.getForObject(url, Vehicle.class);
+//        BookingForm bookingForm = new BookingForm();
+//        model.addAttribute("vehicle", vehicle);
+//        model.addAttribute("licensePlate", licensePlate);
+//        model.addAttribute("bookingForm", bookingForm);
+//        return "booking";
+//    }
 //    @GetMapping(value = "/bookingForm/{licensePlate}")
 //    public String bookingForm(Model model,@ModelAttribute BookingForm bookingForm) {
 //        if (bookingForm == null) {

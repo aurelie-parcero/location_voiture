@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments::html_head">
+</head>
+
+<body>
+<nav th:replace="fragments::html_nav"></nav>
+
+
+<section th:if="${vehicle}" class=" container">
+    <div class="container jumbotron">
+        <div class="container text-primary">
+            <h2 class="text-center"><span><i class="fas fa-car-side"></i></span> Véhicule séléctionnée :</h2>
+        </div>
+
+        <table class="table table-hover">
+            <thead>
+            <tr>
+
+                <th scope="col">Marques</th>
+                <th scope="col">Model</th>
+                <th scope="col">Couleur</th>
+                <th scope="col">Cylindré</th>
+                <th scope="col">Kilomètres</th>
+                <th scope="col">Prix</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td th:utext="${vehicle.brand}">...</td>
+                <td th:utext="${vehicle.type}">...</td>
+                <td th:utext="${vehicle.color}">...</td>
+                <td th:utext="${vehicle.cylinder}">...</td>
+                <td th:utext="${vehicle.kilometerRate}">...</td>
+                <td th:utext="${vehicle.price}">...</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</section>
+
+
+<section th:if="${newcustomer}" class=" container">
+    <div class="container jumbotron">
+    <div class="container text-primary">
+        <h2 class="text-center"><span><i class="fas fa-car-side"></i></span> Véhicule séléctionnée :</h2>
+    </div>
+
+    <table class="table table-hover">
+        <thead>
+        <tr>
+
+            <th scope="col">Votre nom est :</th>
+            <th scope="col">Votre prénom est :</th>
+            <th scope="col">Couleur</th>
+            <th scope="col">Cylindré</th>
+            <th scope="col">Kilomètres</th>
+            <th scope="col">Prix</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td th:utext="${newcustomer.firstname}">...</td>
+            <td th:utext="${newcustomer.lastname}">...</td>
+            <td th:utext="${newcustomer.phonenumber}">...</td>
+            <td th:utext="${newcustomer.email}">...</td>
+            <td th:utext="${newcustomer.drivinglicensenumber}">...</td>
+            <td th:utext="${newcustomer.dateofbirth}">...</td>
+        </tr>
+        </tbody>
+    </table>
+    </div>
+</section>
+
+<footer th:replace="fragments::html_footer">
+</footer>
+
+</body>
+</html>

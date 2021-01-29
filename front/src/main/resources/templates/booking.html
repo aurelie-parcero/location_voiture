@@ -1,0 +1,130 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments::html_head">
+</head>
+
+<body>
+<nav th:replace="fragments::html_nav"></nav>
+
+
+<section th:if="${vehicle}" class=" container">
+  <div class="container jumbotron">
+  <div class="container text-primary">
+    <h2 class="text-center"><span><i class="fas fa-car-side"></i></span> Véhicule séléctionnée :</h2>
+  </div>
+
+  <table class="table table-hover">
+    <thead>
+    <tr>
+
+      <th scope="col">Marques</th>
+      <th scope="col">Model</th>
+      <th scope="col">Couleur</th>
+      <th scope="col">Cylindré</th>
+      <th scope="col">Kilomètres</th>
+      <th scope="col">Prix</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td th:utext="${vehicle.brand}">...</td>
+      <td th:utext="${vehicle.type}">...</td>
+      <td th:utext="${vehicle.color}">...</td>
+      <td th:utext="${vehicle.cylinder}">...</td>
+      <td th:utext="${vehicle.kilometerRate}">...</td>
+      <td th:utext="${vehicle.price}">...</td>
+    </tr>
+    </tbody>
+  </table>
+  </div>
+
+</section>
+<section th:if="${bookingForm}" class=" container">
+    <div class="container jumbotron">
+  <!--        <hr class="my-4" style="margin-bottom: 50px">-->
+  <h2 class="text-center text-primary m-3"><span><i class="fas fa-user"></i></span>Créer votre fiche de réservation : </h2>
+<!--  <p th:text="${licensePlate}"></p>-->
+      <form th:action="@{/addBooking}" th:object="${bookingForm}" class="d-flex flex-column " method="POST">
+          <div class="d-flex flex-row justify-content-between">
+              <div class=" d-flex flex-column  align-items-start justify-content-between">
+                  <div class=" form-group d-flex flex-column  mb-3" style="max-width: 20rem;">
+                      <label for="firstname">Votre Nom : </label>
+                      <input th:field="${bookingForm.firstname}" type="text" id="firstname"/>
+                  </div>
+                  <div class=" form-group d-flex flex-column  mb-3" style="max-width: 20rem;">
+                      <label for="phonenumber">Votre Numéro de téléphone : </label>
+                      <input th:field="${bookingForm.phonenumber}" type="text" id="phonenumber"/>
+                  </div>
+
+
+              </div>
+              <div class=" d-flex flex-column align-items-start justify-content-between">
+                  <div class=" form-group d-flex flex-column  mb-3" style="max-width: 20rem;">
+                      <label for="lastname">Votre Prénom : </label>
+                      <input th:field="${bookingForm.lastname}" type="text" id="lastname"/>
+                  </div>
+                  <div class=" form-group d-flex flex-column  mb-3" style="max-width: 20rem;">
+                      <label for="email">Votre Prénom : </label>
+                      <input th:field="${bookingForm.email}" type="text" id="email"/>
+                  </div>
+
+              </div>
+              <div class=" d-flex flex-column align-items-start justify-content-between">
+
+                  <div class=" form-group d-flex flex-column  mb-3" style="max-width: 20rem;">
+                      <label for="dateofbirth">Votre date de naissance : </label>
+                      <input th:field="${bookingForm.dateofbirth}" type="date" id="dateofbirth"/>
+                  </div>
+                  <div class=" form-group d-flex flex-column  mb-3" style="max-width: 20rem;">
+                      <label for="drivinglicensenumber">Votre numéro de permis de conduire : </label>
+                      <input th:field="${bookingForm.drivinglicensenumber}" type="text" id="drivinglicensenumber"/>
+                  </div>
+              </div>
+          </div>
+
+
+          <div class="d-flex flex-row justify-content-center">
+              <input class="btn btn-success m-3 " style=" width:70%;" type="submit"
+                     value="Valider ma réservation"/>
+          </div>
+
+      </form>
+    </div>
+</section>
+<section th:if="${newcustomer}" class=" container">
+    <div class="container jumbotron">
+        <div class="container text-primary">
+            <h2 class="text-center"><span><i class="fas fa-car-side"></i></span> Véhicule séléctionnée :</h2>
+        </div>
+
+        <table class="table table-hover">
+            <thead>
+            <tr>
+
+                <th scope="col">Votre nom est :</th>
+                <th scope="col">Votre prénom est :</th>
+                <th scope="col">Couleur</th>
+                <th scope="col">Cylindré</th>
+                <th scope="col">Kilomètres</th>
+                <th scope="col">Prix</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td th:utext="${newcustomer.firstname}">...</td>
+                <td th:utext="${newcustomer.lastname}">...</td>
+                <td th:utext="${newcustomer.phonenumber}">...</td>
+                <td th:utext="${newcustomer.email}">...</td>
+                <td th:utext="${newcustomer.drivinglicensenumber}">...</td>
+                <td th:utext="${newcustomer.dateofbirth}">...</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<footer th:replace="fragments::html_footer">
+</footer>
+
+</body>
+</html>
