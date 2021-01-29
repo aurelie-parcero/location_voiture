@@ -34,7 +34,6 @@ public class VehicleController {
     List<Vehicle> getVehiclesAvailable(@RequestParam String type) {
 
         return vehicleRepository.findAllByType(VehicleType.valueOf(type.toUpperCase()));
-//        String url = "http://127.0.07:9004/reservations/api/reservations/booked?start=" + start + "&end=" + end;
 
     }
 

@@ -15,7 +15,11 @@ import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.ITemplateResolver;
 import simone.front.form.BookingForm;
 import simone.front.form.IsBookedForm;
-import simone.front.model.*;
+import simone.front.model.Vehicle;
+import simone.front.model.Reservation;
+import simone.front.model.VehicleType;
+import simone.front.model.ReservationStatus;
+import simone.front.model.Customer;
 
 
 import java.security.Timestamp;
@@ -23,6 +27,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -62,8 +67,20 @@ public class VehicleController {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         String parsedStartDate = format.format(beginDate);
         String parsedEndDate = format.format(endDate);
-        String urltoclean = "http://127.0.0.1:9004/vehicles/api/vehicles/available?start=" + parsedStartDate + "&end=" + parsedEndDate + "&type=" + type;
-        List<Vehicle> vehicles = restTemplate.postForObject(urltoclean, isBookedForm, List.class);
+        String urlVehicles = "http://127.0.0.1:9004/vehicles/api/vehicles?&type=" + type;
+        List<Vehicle> vehicles = restTemplate.postForObject(urlVehicles, isBookedForm, List.class);
+        String urlReservations = "http://127.0.07:9004/reservations/api/reservations/booked?start=" + parsedStartDate + "&end=" + parsedEndDate;
+        List<Reservation> bookings = restTemplate.postForObject(urlReservations, isBookedForm, List.class);
+
+        assert bookings != null;
+        for (Reservation resa : bookings
+        ) {
+            assert vehicles != null;
+            vehicles.removeIf(vehicle -> vehicle.getLicensePlate().equals(resa.getId_vehicle()));
+        }
+
+        System.out.println(vehicles);
+
         model.addAttribute("vehicles", vehicles);
         if (isBookedForm == null) {
             model.addAttribute("isBookedForm", new IsBookedForm());
