@@ -1,6 +1,9 @@
 package simone.front.model;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Set;
@@ -15,9 +18,12 @@ public class Customer {
     private String lastname;
     private String phonenumber;
 
-    private Set<Date> dateofbirth;
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date dateofbirth;
 
-    private Boolean currentrental;
+
+    private boolean currentrental;
 
 
     /**
@@ -36,7 +42,7 @@ public class Customer {
         this.email = email;
     }
 
-    public Customer(Long drivinglicensenumber, String email, String firstName, String lastname, String phonenumber, Set<Date>  dateofbirth, boolean currentrental) {
+    public Customer(Long drivinglicensenumber, String email, String firstName, String lastname, String phonenumber, Date  dateofbirth, boolean currentrental) {
         this.drivinglicensenumber= drivinglicensenumber;
         this.email = email;
         this.firstname = firstName;
@@ -89,11 +95,11 @@ public class Customer {
         this.drivinglicensenumber = drivingLicenseNumber;
     }
 
-    public Set<Date> getDateofbirth() {
+    public Date getDateofbirth() {
         return dateofbirth;
     }
 
-    public void setDateofbirth(Set<Date> dateOfbirth) {
+    public void setDateofbirth(Date dateOfbirth) {
         this.dateofbirth = dateOfbirth;
     }
 

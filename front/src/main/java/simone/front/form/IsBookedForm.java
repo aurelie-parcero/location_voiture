@@ -1,7 +1,7 @@
 package simone.front.form;
 
 import org.springframework.format.annotation.DateTimeFormat;
-import simone.front.model.VehicleType;
+import simone.front.model.*;
 
 import java.time.LocalDate;
 import java.util.Date;

@@ -37,7 +37,7 @@
                     <p style="margin-bottom: 0.5rem;">Séléctionner un type de véhicule : </p>
                     <select name="type" style="height: 28px;">
                         <option th:each="typeOPT : ${T(simone.front.model.VehicleType).values()}"
-                                th:value="${typeOPT}" th:text="${typeOPT.getDisplayValue()}"></option>
+                                th:value="${typeOPT}" th:text="${typeOPT}"></option>
                     </select>
                 </div>
 
@@ -90,8 +90,8 @@
             <td th:utext="${data.kilometerRate}">...</td>
             <td th:utext="${data.price}">...</td>
             <td>
-                <form th:action="@{/bookingForm}"  class="d-flex flex-column " method="GET">
-<!--                    {licensePlate}(licensePlate=${data.licensePlate})-->
+                <form th:action="@{/booking/{licensePlate}(licensePlate=${data.licensePlate})}"  class="d-flex flex-column " method="GET">
+
                     <input class="btn btn-success m-3 " style=" width:70%;" type="submit"
                            value="Réserver"/>
 
@@ -102,27 +102,6 @@
         </tbody>
     </table>
 
-</section>
-<section th:if="${licensePlate}">
-    <!--        <hr class="my-4" style="margin-bottom: 50px">-->
-    <h2 class="text-center text-primary m-3"><span><i class="fas fa-user"></i></span>Créer votre fiche de réservation : </h2>
-<p th:text="${licensePlate}"></p>
-<!--    <form th:action="@{/bookingForm/{licensePlate}}" th:object="${bookingForm}" class="d-flex flex-column " method="POST">-->
-<!--        <div class=" d-flex flex-row justify-content-around">-->
-<!--            <div class=" form-group d-flex flex-column  mb-3" style="max-width: 20rem;">-->
-<!--                <label for="firstname">Debut de la periode de location : </label>-->
-<!--                <input th:field="${bookingForm.firstname}" type="text" id="firstname"/>-->
-<!--            </div>-->
-<!--            -->
-
-<!--        </div>-->
-
-<!--        <div class="d-flex flex-row justify-content-center">-->
-<!--            <input class="btn btn-success m-3 " style=" width:70%;" type="submit"-->
-<!--                   value="Voir les véhicules disponibles"/>-->
-<!--        </div>-->
-
-<!--    </form>-->
 </section>
 
 

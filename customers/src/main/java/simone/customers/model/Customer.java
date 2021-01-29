@@ -1,6 +1,8 @@
 package simone.customers.model;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
@@ -19,10 +21,14 @@ public class Customer {
     private String lastname;
     private String phonenumber;
 
-    private Set<Date> dateofbirth;
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    @Column(columnDefinition = "DATE")
+    @MapKeyColumn(columnDefinition = "DATE")
+    private Date dateofbirth;
 
+    @NotNull
     @Column(columnDefinition = "boolean default false")
-    private Boolean currentrental;
+    private boolean currentrental;
 
 
     /**
@@ -41,8 +47,8 @@ public class Customer {
         this.email = email;
     }
 
-    public Customer(Long drivinglicensenumber, String email, String firstName, String lastname, String phonenumber, Set<Date>  dateofbirth, boolean currentrental) {
-        this.drivinglicensenumber= drivinglicensenumber;
+    public Customer(Long drivinglicensenumber, String email, String firstName, String lastname, String phonenumber, Date dateofbirth, boolean currentrental) {
+        this.drivinglicensenumber = drivinglicensenumber;
         this.email = email;
         this.firstname = firstName;
         this.lastname = lastname;
@@ -50,8 +56,6 @@ public class Customer {
         this.dateofbirth = dateofbirth;
         this.currentrental = currentrental;
     }
-
-
 
 
     public String getEmail() {
@@ -82,7 +86,7 @@ public class Customer {
         return phonenumber;
     }
 
-    public void setPhonenumber(String  phoneNumber) {
+    public void setPhonenumber(String phoneNumber) {
         this.phonenumber = phoneNumber;
     }
 
@@ -94,11 +98,11 @@ public class Customer {
         this.drivinglicensenumber = drivingLicenseNumber;
     }
 
-    public Set<Date>  getDateofbirth() {
+    public Date getDateofbirth() {
         return dateofbirth;
     }
 
-    public void setDateofbirth(Set<Date>  dateOfbirth) {
+    public void setDateofbirth(Date dateOfbirth) {
         this.dateofbirth = dateOfbirth;
     }
 
@@ -114,7 +118,7 @@ public class Customer {
     @Override
     public String toString() {
         return "Customer{" +
-                "id=" + drivinglicensenumber+
+                "id=" + drivinglicensenumber +
                 ", email='" + email + '\'' +
                 ", firstName='" + firstname + '\'' +
                 ", lastName='" + lastname + '\'' +

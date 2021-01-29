@@ -21,6 +21,9 @@ import simone.front.model.VehicleType;
 import simone.front.model.ReservationStatus;
 import simone.front.model.Customer;
 
+import simone.front.form.*;
+import simone.front.model.*;
+
 
 import java.security.Timestamp;
 import java.text.DateFormat;
@@ -89,13 +92,26 @@ public class VehicleController {
         return "index";
     }
 
-    @GetMapping(value = "/bookingForm")
-    public String showBookingForm(Model model) {
-//        BookingForm bookingForm = new BookingForm();
-//        model.addAttribute("bookingForm", bookingForm);
-        model.addAttribute("licensePlate", "teeeesssst");
-        return "index";
+    @GetMapping(value = "/booking/{licensePlate}")
+    public String showBookingForm(Model model, @PathVariable(value = "licensePlate") String licensePlate){
+        String url = "http://127.0.0.1:9004/vehicles/api/vehicles/"+licensePlate;
+        Vehicle vehicle = restTemplate.getForObject(url, Vehicle.class);
+        BookingForm bookingForm = new BookingForm();
+        model.addAttribute("vehicle", vehicle);
+        model.addAttribute("licensePlate", licensePlate);
+        model.addAttribute("bookingForm", bookingForm);
+        return "booking";
     }
+//    @GetMapping(value = "/booking/{licensePlate}")
+//    public String showBookingForm(Model model, @PathVariable(value = "licensePlate") String licensePlate){
+//        String url = "http://127.0.0.1:9004/vehicles/api/vehicles/"+licensePlate;
+//        Vehicle vehicle = restTemplate.getForObject(url, Vehicle.class);
+//        BookingForm bookingForm = new BookingForm();
+//        model.addAttribute("vehicle", vehicle);
+//        model.addAttribute("licensePlate", licensePlate);
+//        model.addAttribute("bookingForm", bookingForm);
+//        return "booking";
+//    }
 //    @GetMapping(value = "/bookingForm/{licensePlate}")
 //    public String bookingForm(Model model,@ModelAttribute BookingForm bookingForm) {
 //        if (bookingForm == null) {
